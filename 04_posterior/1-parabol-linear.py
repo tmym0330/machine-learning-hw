@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 class LinearRegression:
 
-    def __init__(self, number_of_interation=100, learning_rate=0.000001) -> None:
+    def __init__(self, number_of_interation=100, learning_rate=0.00000000000001) -> None:
         self.number_of_interation = number_of_interation
         self.learning_rate = learning_rate
         self.w = np.array([0., 1. , 2.]).reshape(-1, 1)
@@ -30,12 +30,15 @@ class LinearRegression:
             # correct the shape dimension
             self.w[1] -= self.learning_rate * \
                 np.sum(np.multiply(r, x[:, 1].reshape(-1, 1)))
+            self.w[2] -= self.learning_rate * \
+                np.sum(np.multiply(r, x[:, 2].reshape(-1, 1)))
             print(cost[i])
         self.show(N, x)
 
     def show(self, N, x):
         predict = np.dot(x, self.w)
-        plt.plot((x[0][1], x[N-1][1]), (predict[0], predict[N-1]), 'r')
+
+        plt.plot(x[:,1], predict, 'r')
         plt.show()
 
     def predict(self, square):
@@ -45,6 +48,3 @@ class LinearRegression:
 
 l = LinearRegression()
 l.fit('data_square.csv')
-squares = [50, 100, 150]
-for square in squares:
-    l.predict(square=square)
