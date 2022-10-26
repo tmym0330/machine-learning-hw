@@ -9,5 +9,6 @@ def generate_data(n):
   return (x,y.ravel())
 
 x,y = generate_data(100)
+print(x,y)
 fig, ax = plt.subplots(dpi=100)
 plt.scatter(x,y)

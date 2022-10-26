@@ -11,9 +11,10 @@ class LinearRegression:
         self.w = np.array([0., 1.]).reshape(-1, 1)
 
     def fit(self, file_name='data_linear.csv'):
-        data = np.genfromtxt('data_linear.csv', delimiter=',', skip_header=1)
+        data = np.genfromtxt(file_name, delimiter=',', skip_header=1)
 
         N = data.shape[0]
+        print(N)
         x = data[:, 0].reshape(-1, 1)
         y = data[:, 1].reshape(-1, 1)
         plt.scatter(x, y)
